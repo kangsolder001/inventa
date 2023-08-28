@@ -1,21 +1,25 @@
 <?php
     include 'koneksi.php';
+    $lantai =1;
     if(isset($_GET['lantai'])) {
-        if($_GET['lantai'] == '1') {
-            $query ="SELECT * FROM barang_kamar;";
-            $sql = mysqli_query($conn, $query);
-            $no = 0;
-        } elseif ($_GET['lantai'] == '2') {
-            $query ="SELECT * FROM barang_lt2;";
-            $sql = mysqli_query($conn, $query);
-            $no = 0;
-        } else {
-             $query ="SELECT * FROM barang_lt3;";
-            $sql = mysqli_query($conn, $query);
-            $no = 0;
-        }
+        $lantai = $_GET['lantai'];
+    }
+    
+    if( $lantai == '1') {
+        $query ="SELECT * FROM barang_kamar;";
+        $sql = mysqli_query($conn, $query);
+        $no = 0;
+    } else if ( $lantai == '2') {
+        $query ="SELECT * FROM barang_lt2;";
+        $sql = mysqli_query($conn, $query);
+        $no = 0;
+    } else {
+        $query ="SELECT * FROM barang_lt3;";
+        $sql = mysqli_query($conn, $query);
+        $no = 0;
+    }
    
-    } 
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,17 +40,17 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Barang Kamar Lantai <?php echo $_GET['lantai'] ?></h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data Barang Kamar Lantai <?php echo  $lantai ?></h1>
 
                     <div class="row">
 
                         <div class="card shadow mb-4">
                              <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Lantai <?php echo $_GET['lantai'] ?></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Lantai <?php echo  $lantai ?></h6>
                                 </div>
                                 <div class="card-body">
                                     <p>Ubah jika ada barang yang rusak atau tambahkan barang jika ada barang baru.Segera laporkan pihak sarpras jika ada barang yang rusak atau tidak lengkap</p>
-                                    <a href="kelola.php" type="button" class="btn btn-outline-primary mb-3">
+                                    <a href="kelola.php?lantai=<?php echo $_GET['lantai'] ?>" type="button" class="btn btn-outline-primary mb-3">
                                     <i class="fa fa-plus fa-sm"></i>Tambah Data</a>
                                 <div class="table-responsive">
                                   <table class="table align-middle table-bordered table-hover">
@@ -83,10 +87,10 @@
                                         <td><?php echo $result['Lampu_putih']; ?>   </td>
                                         <td><?php echo $result['Lampu_kuning']; ?>  </td>
                                         <td>
-                                            <a href="kelola.php?ubah=<?php echo $result['id']; ?>" type="button" class="btn btn-outline-success btn-sm">
+                                            <a href="kelola.php?lantai=<?php echo $_GET['lantai'] ?>&ubah=<?php echo $result['id'] ?>" type="button" class="btn btn-outline-success btn-sm">
                                                 <i class="fa-solid fa-pencil"></i></a>
                                                 
-                                            <a href="proses.php?hapus=<?php echo $result['id']; ?>" type="button" class="btn btn-outline-danger btn-sm" onClick="return confirm('Anda Yakin Ingin Menghapus?')">
+                                            <a href="proses.php?lantai=<?php echo $_GET['lantai'] ?>&hapus=<?php echo $result['id']; ?>" type="button" class="btn btn-outline-danger btn-sm" onClick="return confirm('Anda Yakin Ingin Menghapus?')">
                                                 <i class="fa fa-trash"></i></a>
                                         </td>
                                       </tr>

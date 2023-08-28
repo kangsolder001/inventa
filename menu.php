@@ -36,9 +36,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Komplek :</h6>
-                        <a class="collapse-item active" href="lantai1.php">Lantai 1</a>
-                        <a class="collapse-item" href="lantai2.php">Lantai 2</a>
-                        <a class="collapse-item" href="lantai3.php">Lantai 3</a>
+                        <a class="collapse-item active" href="lantai.php?lantai=1" >Lantai 1</a>
+                        <a class="collapse-item" href="lantai.php?lantai=2">Lantai 2</a>
+                        <a class="collapse-item" href="lantai.php?lantai=3">Lantai 3</a>
                     </div>
                 </div>
             </li>

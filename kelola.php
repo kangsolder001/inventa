@@ -16,9 +16,17 @@
 
     if(isset($_GET['ubah'])){
         $id = $_GET['ubah'];
+        $lantai = $_GET['lantai'];
         //echo $id;
-
-        $query = "SELECT * FROM barang_kamar WHERE id = '$id';";
+        if ($lantai == '1') {
+            $query ="SELECT * FROM barang_kamar WHERE id = '$id'";
+        } else if ($lantai == '2') {
+            $query ="SELECT * FROM barang_lt2 WHERE id = '$id'";
+        } else {
+            $query ="SELECT * FROM barang_lt3 WHERE id = '$id'";
+        }
+        
+        // $query = "SELECT * FROM barang_kamar WHERE id = '$id';";
         $sql = mysqli_query($conn, $query);
         
         $result = mysqli_fetch_assoc($sql);
@@ -57,10 +65,10 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Barang Kamar Lantai 1</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data Barang Kamar Lantai  <?php echo $_GET['lantai'] ?></h1>
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lantai 1</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Lantai  <?php echo $_GET['lantai'] ?></h6>
                             </div>
                         <div class="card-body">
             </nav>
@@ -140,7 +148,7 @@
                     <?php
                         } 
                     ?>
-                <a href="lantai1.php"type="button" class="btn btn-danger">
+                <a href="lantai.php?lantai=<?php echo $lantai ?>"type="button" class="btn btn-danger">
                     <i class="fa fa-reply" aria-hidden="true"></i>
                     Batal
                 </a>
